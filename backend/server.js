@@ -29,6 +29,11 @@ app.use((err, req, res, next) => {
   });
 });
 
+// No need to include email and password
+// I have ignored code part for sending emails to recipients because chimoney does that automatically
+// Chimoney Sends emails to recipients
+
+
 // POST endpoint to handle payout requests
 app.post('/payout', async (req, res, next) => {
   try {
@@ -76,54 +81,5 @@ app.listen(PORT, () => {
 });
 
 
-// No need to include email and password
-// I have ignored code part for sending emails to recipients because chimoney does that automatically
-// Sends emails to recipients
-
-// // POST endpoint to handle payout requests
-// app.post('/payout', async (req, res) => {
-//   const { email, valueInUSD, currency } = req.body;
-
-//   try {
-//     // Make payout request to Chimoney API
-//     const response = await chimoneySdk.postV02PayoutsChimoney({
-//       chimoneys: [{ email, valueInUSD, currency }],
-//     });
-
-//     // // Configure nodemailer transporter
-//     // const transporter = nodemailer.createTransport({
-//     //   service: 'gmail',
-//     //   auth: {
-//     //     user: process.env.EMAIL_USER,
-//     //     pass: process.env.EMAIL_PASS,
-//     //   },
-//     // });
-
-//     // // Send payout email notification
-//     // const mailOptions = {
-//     //   from: '"Chimoney" <your-email@gmail.com>',
-//     //   to: email,
-//     //   subject: 'Chimoney Payout',
-//     //   text: `You have received a payout. Redeem it here: ${response.data.paymentLink}`,
-//     // };
-
-//     // const info = await transporter.sendMail(mailOptions);
-
-//     // console.log('Email sent: %s', info.messageId);
-
-//     // Send success response
-//     res.json({ status: 'success', data: response.data });
-//   } catch (error) {
-//     console.error('Error during payout:', error);
-
-//     // Send error response with stack trace
-//     res.status(500).json({
-//       status: 'error',
-//       message: 'Error when trying to payout',
-//       error: error.message,
-//       stack: error.stack,
-//     });
-//   }
-// });
 
 
